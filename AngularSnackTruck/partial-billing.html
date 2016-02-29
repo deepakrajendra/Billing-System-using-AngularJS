@@ -1,0 +1,48 @@
+﻿
+<div class="jumbotron text-center">
+    <h3>Billing</h3>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-md-3 ui-widget-content" id="draggable">
+        <div class="thumbnail" ng-repeat="item in itemList1" ng-click="itemClick(item.itemName,item.cost)">
+            <img ng-src="{{item.imageSource}}" />
+            <h4>Cost : {{item.cost}}</h4>
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-md-3">
+        <div class="thumbnail" ng-repeat="item in itemList2" ng-click="itemClick(item.itemName,item.cost)">
+            <img ng-src="{{item.imageSource}}" />
+            <h4>Cost : {{item.cost}}</h4>
+
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in orderedItems">
+                    <td>{{item.name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.cost * item.quantity}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4><b>Total : {{totalCost}}</b></h4>
+
+    </div>
+    </div>
+   
+    
+
+<div ui-view></div>
+

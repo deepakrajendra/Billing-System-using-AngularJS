@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="dist/sweetalert.css" rel="stylesheet" />
+    <!--<link href="bootstrap.min.css" rel="stylesheet" />-->
+    <link href="swal-forms.css" rel="stylesheet" />
+    <link href="css.css" rel="stylesheet" />  <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
+    <!-- <script src="angular.js"></script>
+     <script src="angular-ui-router.min.js"></script>-->
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="dist/sweetalert.min.js"></script>
+    <!--<script src="data.js"></script>-->
+    <script src="swal-forms.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<!-- apply our angular app to our site -->
+<body ng-app="routerApp">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="#">Snack Truck</a>
+          <!--  <img class="navbar-brand" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTf4NMOqZewB5HsERmL9YeC3eg_8hy4CuV76lRgFMB7FhT1Rroy6LmivBY"></img>-->
+
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="billing">Billing</a></li>
+            <li><a ui-sref="storeRoom">Store Room</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+        <div ui-view></div>
+
+    </div>
+    <!--<script>swal({ title: "Error!", text: "Here's my error message!", type: "error", confirmButtonText: "Cool" });</script>-->
+    
+
+</body>
+</html>
