@@ -4,12 +4,15 @@
 </div>
 
 <div class=" row">
-    <div class="col-md-8"></div>
+    <div class="col-xs-3 col-md-3 ui-widget-content">
+        <div class="thumbnail" ng-repeat="item in requestedItems" ng-click="deleteItem(item.Id)">
+            <img ng-src="{{item.ImageSource}}" />
+            <h5>Cost : {{item.Cost}}</h5>
+        </div>
+    </div>
 <div class="col-md-4">
-    <button type="button" class="btn btn-default btn-lg buttons" ng-click="addClick()">Add item</button>
-    <button type="button" class="btn btn-default btn-lg buttons">Default</button>
-    <button type="button" class="btn btn-default btn-lg buttons">Default</button>
-    <button type="button" class="btn btn-default btn-lg buttons">Default</button>
+    <button type="button" class="btn btn-default btn-lg buttons" ng-click="addItem()">Add item</button>
+   
 
 </div>
 </div>

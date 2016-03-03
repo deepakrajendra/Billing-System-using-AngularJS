@@ -63,15 +63,30 @@
     <Content Include="dist\sweetalert-dev.js" />
     <Content Include="dist\sweetalert.css" />
     <Content Include="dist\sweetalert.min.js" />
+    <Content Include="images\Cheese Crispy Sandwich.jpg" />
+    <Content Include="images\deep.jpg" />
+    <Content Include="images\Double Cheese Burger.jpg" />
+    <Content Include="images\Plain Cheese Burger.jpg" />
+    <Content Include="images\Plain Veg Burger.jpg" />
+    <Content Include="images\Toasted Cheese Sandwich.jpg" />
+    <Content Include="images\Toasted Indian Special.jpg" />
+    <Content Include="images\Veg Burger.jpg" />
+    <Content Include="images\Veg Toasted Sandwich.jpg" />
     <Content Include="index.html" />
     <Content Include="partial-billing.html" />
     <Content Include="partial-storeRoom.html" />
+    <Content Include="SnackService.asmx" />
     <Content Include="swal-forms.css" />
     <Content Include="swal-forms.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnackService.asmx.cs">
+      <DependentUpon>SnackService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

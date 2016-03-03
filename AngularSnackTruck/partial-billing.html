@@ -7,6 +7,7 @@
         <div class="thumbnail" ng-repeat="item in itemList1" ng-click="itemClick(item.itemName,item.cost)">
             <img ng-src="{{item.imageSource}}" />
             <h4>Cost : {{item.cost}}</h4>
+          
         </div>
     </div>
 
@@ -16,7 +17,10 @@
             <h4>Cost : {{item.cost}}</h4>
 
         </div>
+
     </div>
+
+
     <div class="col-md-1"></div>
     <div class="col-md-3">
         <table class="table table-hover">
@@ -39,6 +43,29 @@
         </table>
         <h4><b>Total : {{totalCost}}</b></h4>
 
+        <!--<button type="button" class="btn btn-default btn-lg buttons" ng-click="getRequestedItems('ss')">Add item</button>-->
+
+
+        <div class="col-md-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Cost</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in requestedItems">
+                        <td>{{item.Id}}</td>
+                        <td>{{item.ItemName}}</td>
+                        <td>{{item.Cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     </div>
    
