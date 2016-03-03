@@ -4,3 +4,8 @@ c:\users\deepak\documents\visual studio 2013\Projects\AngularSnackTruck\AngularS
 c:\users\deepak\documents\visual studio 2013\Projects\AngularSnackTruck\AngularSnackTruck\obj\Debug\AngularSnackTruck.dll
 c:\users\deepak\documents\visual studio 2013\Projects\AngularSnackTruck\AngularSnackTruck\obj\Debug\AngularSnackTruck.pdb
 C:\Users\Deepak\documents\visual studio 2013\Projects\AngularSnackTruck\AngularSnackTruck\obj\Debug\AngularSnackTruck.csprojResolveAssemblyReference.cache
+C:\Git projects\AngularSnackTruck\Billing-System-using-AngularJS\AngularSnackTruck\bin\AngularSnackTruck.dll.config
+C:\Git projects\AngularSnackTruck\Billing-System-using-AngularJS\AngularSnackTruck\bin\AngularSnackTruck.dll
+C:\Git projects\AngularSnackTruck\Billing-System-using-AngularJS\AngularSnackTruck\bin\AngularSnackTruck.pdb
+C:\Git projects\AngularSnackTruck\Billing-System-using-AngularJS\AngularSnackTruck\obj\Debug\AngularSnackTruck.dll
+C:\Git projects\AngularSnackTruck\Billing-System-using-AngularJS\AngularSnackTruck\obj\Debug\AngularSnackTruck.pdb
