@@ -3,7 +3,7 @@ var routerApp = angular.module('routerApp', ['ui.router']);
 var actualQuantity; 
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
-
+    console.log("its working");
     $urlRouterProvider.otherwise('/billing');
 
     $stateProvider
