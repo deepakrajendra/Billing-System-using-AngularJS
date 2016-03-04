@@ -1,25 +1,4 @@
 ﻿
-<!--<div class="jumbotron text-center">
-    <h3>Billing</h3>
-</div>-->
-<!--<div class="row">
-    <!--<div class="col-xs-3 col-md-3 ui-widget-content" id="draggable">
-        <div class="thumbnail" ng-repeat="item in itemList1" ng-click="itemClick(item.itemName,item.cost)">
-            <img ng-src="{{item.imageSource}}" />
-            <h4>Cost : {{item.cost}}</h4>
-          
-        </div>
-    </div>
-
-    <div class="col-xs-3 col-md-3">
-        <div class="thumbnail" ng-repeat="item in itemList2" ng-click="itemClick(item.itemName,item.cost)">
-            <img ng-src="{{item.imageSource}}" />
-            <h4>{{item.itemName}}</h4>
-            <h4>Cost : {{item.cost}}</h4>
-
-        </div>
-
-    </div>-->
     <div class="col-md-6">
         <div class=" row" ng-repeat="item in requestedItems" ng-if="$index % 2 == 0">
             <div class="col-md-6 ui-widget-content">
@@ -30,7 +9,7 @@
                 </div>
             </div>
             <div class="col-md-6 ui-widget-content">
-                <div class="thumbnail" ng-if=" requestedItems[$index + 1].ItemName !=null" ng-click="itemClick(item.ItemName,item.Cost)">
+                <div class="thumbnail" ng-if=" requestedItems[$index + 1].ItemName !=null" ng-click="itemClick(requestedItems[$index+1].ItemName,requestedItems[$index+1].Cost)">
                     <img ng-src="{{requestedItems[$index+1].ImageSource}}" />
                     <h4>{{requestedItems[$index+1].ItemName}}</h4>
                     <h4>Cost : {{requestedItems[$index+1].Cost}}</h4>
@@ -53,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in orderedItems">
+                <tr ng-repeat="item in orderedItems" ng-dblclick="doubleClick(item)">
                     <td>{{item.name}}</td>
                     <td>{{item.quantity}}</td>
                     <td>{{item.cost * item.quantity}}</td>
@@ -62,33 +41,7 @@
         </table>
         <h4><b>Total : {{totalCost}}</b></h4>
 
-        <!--<button type="button" class="btn btn-default btn-lg buttons" ng-click="getRequestedItems('ss')">Add item</button>-->
-
-
-        <!--<div class="col-md-3">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Cost</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in requestedItems">
-                        <td>{{item.Id}}</td>
-                        <td>{{item.ItemName}}</td>
-                        <td>{{item.Cost}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>-->
-    <!--</div>-->
-   
-    
+     </div>
 
 <div ui-view></div>
 

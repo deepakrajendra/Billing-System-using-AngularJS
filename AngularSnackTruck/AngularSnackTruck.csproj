@@ -73,6 +73,7 @@
     <Content Include="images\Veg Burger.jpg" />
     <Content Include="images\Veg Toasted Sandwich.jpg" />
     <Content Include="index.html" />
+    <Content Include="JQuery.js" />
     <Content Include="partial-billing.html" />
     <Content Include="partial-storeRoom.html" />
     <Content Include="SnackService.asmx" />

@@ -43,7 +43,7 @@ routerApp.controller('billingController', function ($scope,$http) {
 
         });
  
-
+      
     //storing ordereditems
     $scope.orderedItems = [];
     $scope.totalCost = 0;
@@ -87,6 +87,11 @@ routerApp.controller('billingController', function ($scope,$http) {
         });         //end of swal
     }                               //end of itemCLick scope
 
+    $scope.doubleClick = function (item) {
+        var index = $scope.orderedItems.indexOf(item.name);
+        $scope.orderedItems.splice(index, 1);
+        $scope.totalCost=$scope.totalCost-(item.cost*item.quantity);
+    };
     //StoreRoom objects
 
    
