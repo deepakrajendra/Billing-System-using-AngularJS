@@ -2,8 +2,8 @@
 <!--<div class="jumbotron text-center">
     <h3>Billing</h3>
 </div>-->
-<div class="row">
-    <div class="col-xs-3 col-md-3 ui-widget-content" id="draggable">
+<!--<div class="row">
+    <!--<div class="col-xs-3 col-md-3 ui-widget-content" id="draggable">
         <div class="thumbnail" ng-repeat="item in itemList1" ng-click="itemClick(item.itemName,item.cost)">
             <img ng-src="{{item.imageSource}}" />
             <h4>Cost : {{item.cost}}</h4>
@@ -19,6 +19,24 @@
 
         </div>
 
+    </div>-->
+    <div class="col-md-6">
+        <div class=" row" ng-repeat="item in requestedItems" ng-if="$index % 2 == 0">
+            <div class="col-md-6 ui-widget-content">
+                <div class="thumbnail" ng-click="itemClick(item.ItemName,item.Cost)">
+                    <img ng-src="{{requestedItems[$index].ImageSource}}" />               
+                    <h4>{{requestedItems[$index].ItemName}}</h4>
+                    <h4>Cost : {{requestedItems[$index].Cost}}</h4>
+                </div>
+            </div>
+            <div class="col-md-6 ui-widget-content">
+                <div class="thumbnail" ng-if=" requestedItems[$index + 1].ItemName !=null" ng-click="itemClick(item.ItemName,item.Cost)">
+                    <img ng-src="{{requestedItems[$index+1].ImageSource}}" />
+                    <h4>{{requestedItems[$index+1].ItemName}}</h4>
+                    <h4>Cost : {{requestedItems[$index+1].Cost}}</h4>
+                </div>
+            </div>
+        </div> <!--END OF ROW  -->
     </div>
 
 
@@ -47,7 +65,7 @@
         <!--<button type="button" class="btn btn-default btn-lg buttons" ng-click="getRequestedItems('ss')">Add item</button>-->
 
 
-        <div class="col-md-3">
+        <!--<div class="col-md-3">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -67,8 +85,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    </div>
+    </div>-->
+    <!--</div>-->
    
     
 

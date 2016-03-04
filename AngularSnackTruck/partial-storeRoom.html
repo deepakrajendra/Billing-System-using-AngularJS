@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-6 ui-widget-content">
-            <div class="thumbnail" ng-click="updateItem(item.Id,item.ItemName,item.ImageSource,item.Cost)" ng-if=" requestedItems[$index + 1].ItemName !=null">
+            <div class="thumbnail" ng-click="updateItem(requestedItems[$index+1].Id,requestedItems[$index+1].ItemName,requestedItems[$index+1].ImageSource,requestedItems[$index+1].Cost)" ng-if=" requestedItems[$index + 1].ItemName !=null">
                 <img ng-src="{{requestedItems[$index+1].ImageSource}}" />
                 <!--<img ng-src="{{requestedItems[$index+1].ImageSource}}" class="img-thumbnail" alt="Cinque Terre" width="200" height="150">-->
                 <h4>{{requestedItems[$index+1].ItemName}}</h4>
