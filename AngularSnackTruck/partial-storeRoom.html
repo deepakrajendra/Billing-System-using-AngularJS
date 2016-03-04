@@ -2,20 +2,35 @@
 <!--<div class="jumbotron text-center">
     <h3>Store Room</h3>
 </div>-->
-
-<div class=" row">
-    <div class="col-xs-3 col-md-3 ui-widget-content">
-        <div class="thumbnail" ng-repeat="item in requestedItems" ng-click="deleteItem(item.Id)">
-            <img ng-src="{{item.ImageSource}}" />
-            <h5>Cost : {{item.Cost}}</h5>
+<div class="col-md-6">
+    <div class=" row" ng-repeat="item in requestedItems" ng-if="$index % 2 == 0">
+        <div class="col-md-6 ui-widget-content">
+            <div class="thumbnail" ng-click=" updateItem(item.Id,item.ItemName,item.ImageSource,item.Cost)">
+                <img ng-src="{{requestedItems[$index].ImageSource}}" />
+                <!--<img ng-src="{{requestedItems[$index].ImageSource}}" class="img-thumbnail" alt="Cinque Terre" width="200" height="150">-->
+                <h4>{{requestedItems[$index].ItemName}}</h4>
+                <h4>Cost : {{requestedItems[$index].Cost}}</h4>
+            </div>
         </div>
-    </div>
-<div class="col-md-4">
-    <button type="button" class="btn btn-default btn-lg buttons" ng-click="addItem()">Add item</button>
-   
-
+        <div class="col-md-6 ui-widget-content">
+            <div class="thumbnail" ng-click="updateItem(item.Id,item.ItemName,item.ImageSource,item.Cost)" ng-if=" requestedItems[$index + 1].ItemName !=null">
+                <img ng-src="{{requestedItems[$index+1].ImageSource}}" />
+                <!--<img ng-src="{{requestedItems[$index+1].ImageSource}}" class="img-thumbnail" alt="Cinque Terre" width="200" height="150">-->
+                <h4>{{requestedItems[$index+1].ItemName}}</h4>
+                <h4>Cost : {{requestedItems[$index+1].Cost}}</h4>
+            </div>
+        </div>
+    </div> <!--END OF ROW  -->
 </div>
+<div class="col-md-3" style="margin-top:100px">
+    
+        <button type="button" class="btn btn-default btn-lg buttons" ng-click="addItem()">Add item</button>
+        <button type="button" class="btn btn-default btn-lg buttons" ng-click="deleteItem()">Delete item</button>
+    
 </div>
 
-<div ui-view></div>
+
+
+
+    <div ui-view></div>
 

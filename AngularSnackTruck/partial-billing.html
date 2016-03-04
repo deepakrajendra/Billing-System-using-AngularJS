@@ -14,6 +14,7 @@
     <div class="col-xs-3 col-md-3">
         <div class="thumbnail" ng-repeat="item in itemList2" ng-click="itemClick(item.itemName,item.cost)">
             <img ng-src="{{item.imageSource}}" />
+            <h4>{{item.itemName}}</h4>
             <h4>Cost : {{item.cost}}</h4>
 
         </div>

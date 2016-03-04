@@ -68,15 +68,34 @@ namespace AngularSnackTruck
         }
 
         [WebMethod]
-        public void DeleteItem(int Id)
+        public void DeleteItem(string ItemName)
         {
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
                 SqlCommand cmd = new SqlCommand("USP_Delete_Item", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@Itemname", ItemName);
                  con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        [WebMethod]
+        public void UpdateItem(int Id,string ItemName, string ImageSource, int Cost)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("USP_Update_Item", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                cmd.Parameters.AddWithValue("@ImageSource", ImageSource);
+                cmd.Parameters.AddWithValue("@Cost", Cost);
+
+                con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
