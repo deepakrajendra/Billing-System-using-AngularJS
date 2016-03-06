@@ -75,6 +75,7 @@
     <Content Include="index.html" />
     <Content Include="JQuery.js" />
     <Content Include="partial-billing.html" />
+    <Content Include="partial-collection.html" />
     <Content Include="partial-storeRoom.html" />
     <Content Include="SnackService.asmx" />
     <Content Include="swal-forms.css" />

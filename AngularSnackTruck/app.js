@@ -43,16 +43,26 @@ routerApp.controller('billingController', function ($scope,$http) {
     // , { 'itemName': 'Plain Veg Burger', 'imageSource': 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQGqXmbMZIezaptBUGBT8g2UkZjBtNeMhtLxFpGAwMZwdp0QasB', 'cost': 60 }, { 'itemName': 'Double Cheese Burger', 'imageSource': 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQLzE-HT-8BSWvYdva-qMoNUhyr6Qcjsc3NOCABDIowGcZEEPydaw', 'cost': 70 }];
    
     //using web service
+    $scope.totalCost = 0;
+
         $http.post('SnackService.asmx/GetAllItems').then(function (response) {
             $scope.requestedItems = response.data;
             console.log("post called");
+
+        });
+
+        $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
+            $scope.orderedItems = response.data;
+            console.log("called post from storeRoomController");
+            for (var i = 0; i < $scope.orderedItems.length; i++) {
+                $scope.totalCost = $scope.totalCost + $scope.orderedItems[i].Cost;
+            }
 
         });
  
       
     //storing ordereditems
     $scope.orderedItems = [];
-    $scope.totalCost = 0;
   
     //clicking on the item 
     $scope.itemClick = function (itemId,itemName, itemCost) {
@@ -80,12 +90,15 @@ routerApp.controller('billingController', function ($scope,$http) {
             else {
                 swal(quantity, itemName, "success");
 
-                $scope.totalCost = $scope.totalCost + (itemCost * quantity);
                 $http.post('SnackService.asmx/InsertItemToCollection', { 'Id': itemId, 'ItemName': itemName, 'Count': quantity, 'Cost': itemCost * quantity }).
               then(function () {
                   console.log("is t happening");
                   $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
                       $scope.orderedItems = response.data;
+                      for (var i = 0; i < $scope.orderedItems.length; i++) {
+                          $scope.totalCost = $scope.totalCost + $scope.orderedItems[i].Cost;
+
+                      }
                       console.log("called post from storeRoomController");
 
                   });
@@ -108,11 +121,13 @@ routerApp.controller('billingController', function ($scope,$http) {
         //$scope.totalCost=$scope.totalCost-(item.cost*item.quantity);
         $http.post('SnackService.asmx/DeleteItemFromCollection', { 'CollectionId': CollectionId }).then(
             function () {
-                $scope.totalCost=$scope.totalCost-Cost;
                 $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
                     $scope.orderedItems = response.data;
+                    $scope.totalCost = 0;
                     //console.log("called post from storeRoomController");
-                
+                    for (var i = 0; i < $scope.orderedItems.length; i++) {
+                        $scope.totalCost = $scope.totalCost + $scope.orderedItems[i].Cost;
+                    }
                 });
             }
             );
@@ -124,7 +139,9 @@ routerApp.controller('billingController', function ($scope,$http) {
             $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
                 $scope.orderedItems = response.data;
                 //console.log("called post from storeRoomController");
-                $scope.totalCost = 0;
+                for (var i = 0; i < $scope.todaysCollection.length; i++) {
+                    $scope.total = $scope.total + $scope.todaysCollection[i].Cost;
+                }
             });
         });
        
@@ -252,9 +269,13 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
 routerApp.controller('collectionController', function ($scope,$http) {
 
     $scope.todaysCollection = [];
-    http.post('SnackService.asmx/GetTodaysCollection').then(function (response)
+    $http.post('SnackService.asmx/GetTodaysCollection').then(function (response)
     {
         $scope.todaysCollection = response.data;
+        $scope.total = 0;
+        for (var i = 0; i < $scope.todaysCollection.length; i++) {
+            $scope.total=$scope.total+$scope.todaysCollection[i].Cost;
+        }
     });
 
 }); //end of controller

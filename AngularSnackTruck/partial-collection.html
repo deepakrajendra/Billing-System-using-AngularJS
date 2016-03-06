@@ -1,0 +1,23 @@
+﻿
+<div class="col-md-4">
+<h2 style=" color:green">Todays Collection</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in todaysCollection">
+                <td>{{item.ItemName}}</td>
+                <td>{{item.Count}}</td>
+                <td>{{item.Cost}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="float:right"> <h4>Total : {{total}}</h4></div>
+</div>

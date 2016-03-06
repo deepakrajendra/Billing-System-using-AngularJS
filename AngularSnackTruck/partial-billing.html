@@ -2,14 +2,14 @@
     <div class="col-md-6">
         <div class=" row" ng-repeat="item in requestedItems" ng-if="$index % 2 == 0">
             <div class="col-md-6 ui-widget-content">
-                <div class="thumbnail" ng-click="itemClick(item.ItemName,item.Cost)">
+                <div class="thumbnail" ng-click="itemClick(item.Id,item.ItemName,item.Cost)">
                     <img ng-src="{{requestedItems[$index].ImageSource}}" />               
                     <h4>{{requestedItems[$index].ItemName}}</h4>
                     <h4>Cost : {{requestedItems[$index].Cost}}</h4>
                 </div>
             </div>
             <div class="col-md-6 ui-widget-content">
-                <div class="thumbnail" ng-if=" requestedItems[$index + 1].ItemName !=null" ng-click="itemClick(requestedItems[$index+1].ItemName,requestedItems[$index+1].Cost)">
+                <div class="thumbnail" ng-if=" requestedItems[$index + 1].ItemName !=null" ng-click="itemClick(requestedItems[$index+1].Id,requestedItems[$index+1].ItemName,requestedItems[$index+1].Cost)">
                     <img ng-src="{{requestedItems[$index+1].ImageSource}}" />
                     <h4>{{requestedItems[$index+1].ItemName}}</h4>
                     <h4>Cost : {{requestedItems[$index+1].Cost}}</h4>
@@ -32,14 +32,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in orderedItems" ng-dblclick="doubleClick(item)">
-                    <td>{{item.name}}</td>
-                    <td>{{item.quantity}}</td>
-                    <td>{{item.cost * item.quantity}}</td>
+                <tr ng-repeat="item in orderedItems" ng-dblclick="doubleClick(item.CollectionId,item.Cost)">
+                    <td>{{item.ItemName}}</td>
+                    <td>{{item.Count}}</td>
+                    <td>{{item.Cost}}</td>
                 </tr>
             </tbody>
         </table>
         <h4><b>Total : {{totalCost}}</b></h4>
+        <button type="button" class="btn btn-success btn-sm buttons" ng-click="deleteTemp()" style="width:150px; height:50px; float:right"><h4>New</h4></button>
 
      </div>
 
