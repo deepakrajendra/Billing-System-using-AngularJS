@@ -23,7 +23,13 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
           controller: 'storeRoomController'
 
 
-      });
+      })
+
+    .state('collection', {
+        url: '/collection',
+        templateUrl: 'partial-collection.html',
+        controller:'collectionController'
+    });
 
 }); // closes $routerApp.config()
 
@@ -49,7 +55,7 @@ routerApp.controller('billingController', function ($scope,$http) {
     $scope.totalCost = 0;
   
     //clicking on the item 
-    $scope.itemClick = function (itemName, itemCost) {
+    $scope.itemClick = function (itemId,itemName, itemCost) {
         swal({
             title: itemName,
             //text: "Number of " + itemName + "s bought",
@@ -75,23 +81,54 @@ routerApp.controller('billingController', function ($scope,$http) {
                 swal(quantity, itemName, "success");
 
                 $scope.totalCost = $scope.totalCost + (itemCost * quantity);
+                $http.post('SnackService.asmx/InsertItemToCollection', { 'Id': itemId, 'ItemName': itemName, 'Count': quantity, 'Cost': itemCost * quantity }).
+              then(function () {
+                  console.log("is t happening");
+                  $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
+                      $scope.orderedItems = response.data;
+                      console.log("called post from storeRoomController");
 
-                $scope.$apply(function () {
-                    $scope.orderedItems.push({
-                        'name': itemName,
-                        'quantity': parseInt(quantity),
-                        'cost': itemCost
-                    });
-                });
+                  });
+
+              });
+                //$scope.$apply(function () {
+                //    $scope.orderedItems.push({
+                //        'name': itemName,f
+                //        'quantity': parseInt(quantity),
+                //        'cost': itemCost
+                //    });
+                //});
             }
         });         //end of swal
     }                               //end of itemCLick scope
 
-    $scope.doubleClick = function (item) {
-        var index = $scope.orderedItems.indexOf(item.name);
-        $scope.orderedItems.splice(index, 1);
-        $scope.totalCost=$scope.totalCost-(item.cost*item.quantity);
+    $scope.doubleClick = function (CollectionId,Cost) {
+        //var index = $scope.orderedItems.indexOf(item.name);
+        //$scope.orderedItems.splice(index, 1);
+        //$scope.totalCost=$scope.totalCost-(item.cost*item.quantity);
+        $http.post('SnackService.asmx/DeleteItemFromCollection', { 'CollectionId': CollectionId }).then(
+            function () {
+                $scope.totalCost=$scope.totalCost-Cost;
+                $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
+                    $scope.orderedItems = response.data;
+                    //console.log("called post from storeRoomController");
+                
+                });
+            }
+            );
     };
+
+    $scope.deleteTemp=function()
+    {
+        $http.post('SnackService.asmx/DeleteTemp').then(function () {
+            $http.post('SnackService.asmx/GetAllItemsFromCollection').then(function (response) {
+                $scope.orderedItems = response.data;
+                //console.log("called post from storeRoomController");
+                $scope.totalCost = 0;
+            });
+        });
+       
+    }
     //StoreRoom objects
 
    
@@ -132,6 +169,7 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
              
                 
             });
+
          
             $http.post('SnackService.asmx/GetAllItems').then(function (response) {
                 $scope.requestedItems = response.data;
@@ -210,6 +248,16 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
     };
   
 });         //end of controller
+
+routerApp.controller('collectionController', function ($scope,$http) {
+
+    $scope.todaysCollection = [];
+    http.post('SnackService.asmx/GetTodaysCollection').then(function (response)
+    {
+        $scope.todaysCollection = response.data;
+    });
+
+}); //end of controller
 
 
     
