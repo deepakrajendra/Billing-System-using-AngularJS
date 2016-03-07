@@ -1,5 +1,5 @@
 ﻿
-var routerApp = angular.module('routerApp', ['ui.router']);
+var routerApp = angular.module('routerApp', ['ui.router','chart.js']);
 var actualQuantity; 
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -242,9 +242,7 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
             confirmButtonText: 'Delete',
             closeOnConfirm: true,
             formFields: [
-                { id: 'itemName', placeholder: 'Item Name' }
-               
-
+                { id: 'itemName', placeholder: 'Item Name' }           
             ]
         }, function (isConfirm) {
             // do whatever you want with the form data
@@ -268,17 +266,34 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
 
 routerApp.controller('collectionController', function ($scope,$http) {
 
+   
     $scope.names = ["Today", "Total"];
     $scope.todaysCollection = [];
     $scope.totalCollection = [];
 
     $scope.update = function () {
+        $scope.labels = [];
+        $scope.data = [];
         if ($scope.selectedName == 'Today')
             $http.post('SnackService.asmx/GetTodaysCollection').then(function (response) {
                 $scope.collection = response.data;
                 $scope.total = 0;
                 for (var i = 0; i < $scope.collection.length; i++) {
                     $scope.total = $scope.total + $scope.collection[i].Cost;
+                }
+
+                //fill labels array
+                for (var i = 0; i < $scope.collection.length; i++) {
+                     console.log($scope.collection[i].ItemName);
+                       $scope.labels.push($scope.collection[i].ItemName);
+                 
+                }
+
+                //fill data array
+                for (var i = 0; i < $scope.collection.length; i++) {
+                  
+                        ($scope.collection[i].Count);
+                        $scope.data.push($scope.collection[i].Count);
                 }
             });
         else
@@ -288,8 +303,22 @@ routerApp.controller('collectionController', function ($scope,$http) {
                 for (var i = 0; i < $scope.collection.length; i++) {
                     $scope.total = $scope.total + $scope.collection[i].Cost;
                 }
+                //fill labels array
+                for (var i = 0; i < $scope.collection.length; i++) {
+                  
+                        $scope.labels.push($scope.collection[i].ItemName);
+                   
+                }
+
+                //fill data array
+                for (var i = 0; i < $scope.collection.length; i++) {
+
+                        $scope.data.push($scope.collection[i].Count);
+               }
             });
     };
+    $scope.chartNames = ['doughnut', 'pie'];
+   
 
 }); //end of controller
 
