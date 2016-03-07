@@ -188,8 +188,8 @@ namespace AngularSnackTruck
                 con.Close();
             }
         }
-        
-        // Get Todays Collection
+
+        //Get todays collection
         [WebMethod]
         public void GetTodaysCollection()
         {
@@ -199,7 +199,7 @@ namespace AngularSnackTruck
             {
                 SqlCommand cmd = new SqlCommand("USP_Select_TodaysCollection", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@Date",DateTime.Now);
                 //SqlCommand cmd = new SqlCommand("select * from Items1",con);
                 con.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -220,6 +220,40 @@ namespace AngularSnackTruck
             }
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(todaysCollectionList));
+        }
+
+    
+       
+        //Get total collection
+        [WebMethod]
+        public void GetTotalCollection()
+        {
+            List<Collections> totalCollectionList = new List<Collections>();
+            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("USP_Select_TotalCollection", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                //SqlCommand cmd = new SqlCommand("select * from Items1",con);
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Collections col = new Collections();
+                        col.CollectionId = 0;
+                        col.ItemName = reader["ItemName"].ToString();
+                        col.Id = 0;
+                        col.Cost = int.Parse(reader["Cost"].ToString());
+
+                        col.Count = int.Parse(reader["Quantity"].ToString());
+                        totalCollectionList.Add(col);
+                    }
+                }
+                con.Close();
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(totalCollectionList));
         }
 
     }

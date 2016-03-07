@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="css.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="data.js" />
     <Content Include="dist\sweetalert-dev.js" />
     <Content Include="dist\sweetalert.css" />
@@ -74,6 +76,9 @@
     <Content Include="images\Veg Toasted Sandwich.jpg" />
     <Content Include="index.html" />
     <Content Include="JQuery.js" />
+    <Content Include="js\angular-ui-router.min.js" />
+    <Content Include="js\angular.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="partial-billing.html" />
     <Content Include="partial-collection.html" />
     <Content Include="partial-storeRoom.html" />

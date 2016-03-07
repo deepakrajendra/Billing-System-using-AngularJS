@@ -12,3 +12,12 @@ color:white;
 }
 
 
+select {
+  
+height:40px;
+width:200px;
+}
+option {
+
+font-size:20px;
+}

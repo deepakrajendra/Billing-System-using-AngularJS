@@ -268,15 +268,28 @@ routerApp.controller('storeRoomController', function ($scope, $http) {
 
 routerApp.controller('collectionController', function ($scope,$http) {
 
+    $scope.names = ["Today", "Total"];
     $scope.todaysCollection = [];
-    $http.post('SnackService.asmx/GetTodaysCollection').then(function (response)
-    {
-        $scope.todaysCollection = response.data;
-        $scope.total = 0;
-        for (var i = 0; i < $scope.todaysCollection.length; i++) {
-            $scope.total=$scope.total+$scope.todaysCollection[i].Cost;
-        }
-    });
+    $scope.totalCollection = [];
+
+    $scope.update = function () {
+        if ($scope.selectedName == 'Today')
+            $http.post('SnackService.asmx/GetTodaysCollection').then(function (response) {
+                $scope.collection = response.data;
+                $scope.total = 0;
+                for (var i = 0; i < $scope.collection.length; i++) {
+                    $scope.total = $scope.total + $scope.collection[i].Cost;
+                }
+            });
+        else
+            $http.post('SnackService.asmx/GetTotalCollection').then(function (response) {
+                $scope.collection = response.data;
+                $scope.total = 0;
+                for (var i = 0; i < $scope.collection.length; i++) {
+                    $scope.total = $scope.total + $scope.collection[i].Cost;
+                }
+            });
+    };
 
 }); //end of controller
 
